@@ -14,13 +14,13 @@ func day_17() {
     var person = Person()
     
     /// 方法1 ：获取堆空间地址
-    var ptr = withUnsafePointer(to: &person) { UnsafeRawPointer($0) }
-    var personObjectAddress = ptr.load(as: UInt.self)
-    var ptr2 = UnsafeRawPointer(bitPattern: personObjectAddress)
-    print(ptr2)
+    let ptr = withUnsafePointer(to: &person) { UnsafeRawPointer($0) }
+    let personObjectAddress = ptr.load(as: UInt.self)
+    let ptr2 = UnsafeRawPointer(bitPattern: personObjectAddress)
+    print(ptr2 as Any)
     
     /// 方法2 ： 获取堆空间地址
-    var ptr3 = unsafeBitCast(person, to: UnsafeRawPointer.self)
+    let ptr3 = unsafeBitCast(person, to: UnsafeRawPointer.self)
     print(ptr3)
     
 }
