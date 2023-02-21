@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14D992D729A3D9CC002E46F7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D992D629A3D9CC002E46F7 /* main.swift */; };
-		14D992F129A471F5002E46F7 /* Mems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D992F029A471F5002E46F7 /* Mems.swift */; };
+		14D9930129A48A65002E46F7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D9930029A48A65002E46F7 /* main.swift */; };
+		14D9930829A48A99002E46F7 /* day_17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D9930729A48A99002E46F7 /* day_17.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		14D992D129A3D9CC002E46F7 /* CopyFiles */ = {
+		14D992FB29A48A65002E46F7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,13 +24,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		14D992D329A3D9CC002E46F7 /* LeetCode-String */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LeetCode-String"; sourceTree = BUILT_PRODUCTS_DIR; };
-		14D992D629A3D9CC002E46F7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		14D992F029A471F5002E46F7 /* Mems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Mems.swift; path = "/Users/cheng/Desktop/MyGit/LeetCode-Swift/LeetCode-String/LeetCode-String/Mems.swift"; sourceTree = "<absolute>"; };
+		14D992FD29A48A65002E46F7 /* MJ-Swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "MJ-Swift"; sourceTree = BUILT_PRODUCTS_DIR; };
+		14D9930029A48A65002E46F7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		14D9930729A48A99002E46F7 /* day_17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_17.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		14D992D029A3D9CC002E46F7 /* Frameworks */ = {
+		14D992FA29A48A65002E46F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -40,67 +40,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14D992CA29A3D9CC002E46F7 = {
+		14D992F429A48A65002E46F7 = {
 			isa = PBXGroup;
 			children = (
-				14D992D529A3D9CC002E46F7 /* LeetCode-String */,
-				14D992D429A3D9CC002E46F7 /* Products */,
+				14D992FF29A48A65002E46F7 /* MJ-Swift */,
+				14D992FE29A48A65002E46F7 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		14D992D429A3D9CC002E46F7 /* Products */ = {
+		14D992FE29A48A65002E46F7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14D992D329A3D9CC002E46F7 /* LeetCode-String */,
+				14D992FD29A48A65002E46F7 /* MJ-Swift */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		14D992D529A3D9CC002E46F7 /* LeetCode-String */ = {
+		14D992FF29A48A65002E46F7 /* MJ-Swift */ = {
 			isa = PBXGroup;
 			children = (
-				14D992F029A471F5002E46F7 /* Mems.swift */,
-				14D992D629A3D9CC002E46F7 /* main.swift */,
+				14D9930029A48A65002E46F7 /* main.swift */,
+				14D9930729A48A99002E46F7 /* day_17.swift */,
 			);
-			path = "LeetCode-String";
+			path = "MJ-Swift";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		14D992D229A3D9CC002E46F7 /* LeetCode-String */ = {
+		14D992FC29A48A65002E46F7 /* MJ-Swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14D992DA29A3D9CC002E46F7 /* Build configuration list for PBXNativeTarget "LeetCode-String" */;
+			buildConfigurationList = 14D9930429A48A65002E46F7 /* Build configuration list for PBXNativeTarget "MJ-Swift" */;
 			buildPhases = (
-				14D992CF29A3D9CC002E46F7 /* Sources */,
-				14D992D029A3D9CC002E46F7 /* Frameworks */,
-				14D992D129A3D9CC002E46F7 /* CopyFiles */,
+				14D992F929A48A65002E46F7 /* Sources */,
+				14D992FA29A48A65002E46F7 /* Frameworks */,
+				14D992FB29A48A65002E46F7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "LeetCode-String";
-			productName = "LeetCode-String";
-			productReference = 14D992D329A3D9CC002E46F7 /* LeetCode-String */;
+			name = "MJ-Swift";
+			productName = "MJ-Swift";
+			productReference = 14D992FD29A48A65002E46F7 /* MJ-Swift */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		14D992CB29A3D9CC002E46F7 /* Project object */ = {
+		14D992F529A48A65002E46F7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					14D992D229A3D9CC002E46F7 = {
+					14D992FC29A48A65002E46F7 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 14D992CE29A3D9CC002E46F7 /* Build configuration list for PBXProject "LeetCode-String" */;
+			buildConfigurationList = 14D992F829A48A65002E46F7 /* Build configuration list for PBXProject "MJ-Swift" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -108,30 +108,30 @@
 				en,
 				Base,
 			);
-			mainGroup = 14D992CA29A3D9CC002E46F7;
-			productRefGroup = 14D992D429A3D9CC002E46F7 /* Products */;
+			mainGroup = 14D992F429A48A65002E46F7;
+			productRefGroup = 14D992FE29A48A65002E46F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				14D992D229A3D9CC002E46F7 /* LeetCode-String */,
+				14D992FC29A48A65002E46F7 /* MJ-Swift */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		14D992CF29A3D9CC002E46F7 /* Sources */ = {
+		14D992F929A48A65002E46F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14D992D729A3D9CC002E46F7 /* main.swift in Sources */,
-				14D992F129A471F5002E46F7 /* Mems.swift in Sources */,
+				14D9930829A48A99002E46F7 /* day_17.swift in Sources */,
+				14D9930129A48A65002E46F7 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		14D992D829A3D9CC002E46F7 /* Debug */ = {
+		14D9930229A48A65002E46F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -191,7 +191,7 @@
 			};
 			name = Debug;
 		};
-		14D992D929A3D9CC002E46F7 /* Release */ = {
+		14D9930329A48A65002E46F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -244,7 +244,7 @@
 			};
 			name = Release;
 		};
-		14D992DB29A3D9CC002E46F7 /* Debug */ = {
+		14D9930529A48A65002E46F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -255,7 +255,7 @@
 			};
 			name = Debug;
 		};
-		14D992DC29A3D9CC002E46F7 /* Release */ = {
+		14D9930629A48A65002E46F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -269,25 +269,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14D992CE29A3D9CC002E46F7 /* Build configuration list for PBXProject "LeetCode-String" */ = {
+		14D992F829A48A65002E46F7 /* Build configuration list for PBXProject "MJ-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				14D992D829A3D9CC002E46F7 /* Debug */,
-				14D992D929A3D9CC002E46F7 /* Release */,
+				14D9930229A48A65002E46F7 /* Debug */,
+				14D9930329A48A65002E46F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		14D992DA29A3D9CC002E46F7 /* Build configuration list for PBXNativeTarget "LeetCode-String" */ = {
+		14D9930429A48A65002E46F7 /* Build configuration list for PBXNativeTarget "MJ-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				14D992DB29A3D9CC002E46F7 /* Debug */,
-				14D992DC29A3D9CC002E46F7 /* Release */,
+				14D9930529A48A65002E46F7 /* Debug */,
+				14D9930629A48A65002E46F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 14D992CB29A3D9CC002E46F7 /* Project object */;
+	rootObject = 14D992F529A48A65002E46F7 /* Project object */;
 }
