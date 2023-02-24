@@ -9,5 +9,3 @@ import Foundation
 
 // https://books.halfrost.com/leetcode/ChapterTwo/String/
 
-print("Hello, World!")
-

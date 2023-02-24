@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1438760329A8FF5100B6AA8F /* day_00.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1438760229A8FF5100B6AA8F /* day_00.swift */; };
+		1475CB9229A60FFC0068F361 /* day_19.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1475CB9129A60FFC0068F361 /* day_19.swift */; };
+		1475CB9529A7388F0068F361 /* day_20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1475CB9429A7388F0068F361 /* day_20.swift */; };
+		1475CB9829A744A10068F361 /* Curry in Frameworks */ = {isa = PBXBuildFile; productRef = 1475CB9729A744A10068F361 /* Curry */; };
+		1475CB9A29A771E90068F361 /* day_21.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1475CB9929A771E90068F361 /* day_21.swift */; };
+		1475CB9C29A899AD0068F361 /* day_22.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1475CB9B29A899AD0068F361 /* day_22.swift */; };
 		14D9930129A48A65002E46F7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D9930029A48A65002E46F7 /* main.swift */; };
 		14D9930829A48A99002E46F7 /* day_17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D9930729A48A99002E46F7 /* day_17.swift */; };
+		14DDDB9B29A8D12900B613B2 /* day_01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DDDB9A29A8D12900B613B2 /* day_01.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,9 +31,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1438760229A8FF5100B6AA8F /* day_00.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_00.swift; sourceTree = "<group>"; };
+		1475CB9129A60FFC0068F361 /* day_19.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_19.swift; sourceTree = "<group>"; };
+		1475CB9429A7388F0068F361 /* day_20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_20.swift; sourceTree = "<group>"; };
+		1475CB9929A771E90068F361 /* day_21.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_21.swift; sourceTree = "<group>"; };
+		1475CB9B29A899AD0068F361 /* day_22.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_22.swift; sourceTree = "<group>"; };
 		14D992FD29A48A65002E46F7 /* MJ-Swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "MJ-Swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D9930029A48A65002E46F7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		14D9930729A48A99002E46F7 /* day_17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_17.swift; sourceTree = "<group>"; };
+		14DDDB9A29A8D12900B613B2 /* day_01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day_01.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1475CB9829A744A10068F361 /* Curry in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +74,13 @@
 			isa = PBXGroup;
 			children = (
 				14D9930029A48A65002E46F7 /* main.swift */,
+				1438760229A8FF5100B6AA8F /* day_00.swift */,
+				14DDDB9A29A8D12900B613B2 /* day_01.swift */,
 				14D9930729A48A99002E46F7 /* day_17.swift */,
+				1475CB9129A60FFC0068F361 /* day_19.swift */,
+				1475CB9429A7388F0068F361 /* day_20.swift */,
+				1475CB9929A771E90068F361 /* day_21.swift */,
+				1475CB9B29A899AD0068F361 /* day_22.swift */,
 			);
 			path = "MJ-Swift";
 			sourceTree = "<group>";
@@ -81,6 +101,9 @@
 			dependencies = (
 			);
 			name = "MJ-Swift";
+			packageProductDependencies = (
+				1475CB9729A744A10068F361 /* Curry */,
+			);
 			productName = "MJ-Swift";
 			productReference = 14D992FD29A48A65002E46F7 /* MJ-Swift */;
 			productType = "com.apple.product-type.tool";
@@ -109,6 +132,9 @@
 				Base,
 			);
 			mainGroup = 14D992F429A48A65002E46F7;
+			packageReferences = (
+				1475CB9629A744A10068F361 /* XCRemoteSwiftPackageReference "Curry" */,
+			);
 			productRefGroup = 14D992FE29A48A65002E46F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +151,12 @@
 			files = (
 				14D9930829A48A99002E46F7 /* day_17.swift in Sources */,
 				14D9930129A48A65002E46F7 /* main.swift in Sources */,
+				1438760329A8FF5100B6AA8F /* day_00.swift in Sources */,
+				1475CB9C29A899AD0068F361 /* day_22.swift in Sources */,
+				1475CB9A29A771E90068F361 /* day_21.swift in Sources */,
+				14DDDB9B29A8D12900B613B2 /* day_01.swift in Sources */,
+				1475CB9529A7388F0068F361 /* day_20.swift in Sources */,
+				1475CB9229A60FFC0068F361 /* day_19.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +320,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1475CB9629A744A10068F361 /* XCRemoteSwiftPackageReference "Curry" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thoughtbot/Curry.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1475CB9729A744A10068F361 /* Curry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1475CB9629A744A10068F361 /* XCRemoteSwiftPackageReference "Curry" */;
+			productName = Curry;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14D992F529A48A65002E46F7 /* Project object */;
 }

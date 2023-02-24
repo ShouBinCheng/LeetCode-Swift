@@ -7,4 +7,15 @@
 
 import Foundation
 
-day_17()
+let funcDays = [
+    day_00,
+//    day_17,
+//    day_20,
+//    day_21,
+    day_22,
+]
+
+for i in funcDays {
+    i()
+}
+

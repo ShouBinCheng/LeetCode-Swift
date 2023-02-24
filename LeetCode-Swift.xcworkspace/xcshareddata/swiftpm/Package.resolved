@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "curry",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thoughtbot/Curry.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "56f657c8a68dde445cc46630ccc84989213d93e8"
+      }
+    }
+  ],
+  "version" : 2
+}
