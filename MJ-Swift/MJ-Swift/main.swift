@@ -9,6 +9,7 @@ import Foundation
 
 let funcDays = [
     day_00,
+    day_01,
 //    day_17,
 //    day_20,
 //    day_21,
