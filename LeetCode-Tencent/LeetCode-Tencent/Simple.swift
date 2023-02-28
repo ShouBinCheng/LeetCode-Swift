@@ -7,6 +7,135 @@
 
 import Foundation
 
+/// 21. 合并两个有序链表
+/*
+ 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+
+ 示例 1：
+ 输入：l1 = [1,2,4], l2 = [1,3,4]
+ 输出：[1,1,2,3,4,4]
+ 
+ 示例 2：
+ 输入：l1 = [], l2 = []
+ 输出：[]
+ 示例 3：
+
+ 输入：l1 = [], l2 = [0]
+ 输出：[0]
+  
+
+ 提示：
+
+ 两个链表的节点数目范围是 [0, 50]
+ -100 <= Node.val <= 100
+ l1 和 l2 均按 非递减顺序 排列
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/merge-two-sorted-lists
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+public class Solution_21 {
+    
+    public class ListNode {
+        public var val: Int
+        public var next: ListNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.next = nil
+        }
+        public init(_ val: Int, _ next: ListNode?) {
+            self.val = val
+            self.next = next
+        }
+    }
+    
+    /// 合并链表 （while）
+    /// 时间复杂度 O(m+n)
+    /// 空间复杂度 O(1)
+    /// 没有开辟更多空间，比递归实现快了很多
+    func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        if list1 == nil {
+            return list2
+        }
+        if list2 == nil {
+            return list1
+        }
+        var n1 = list1, n2 = list2
+        let head = ListNode(0)
+        var pre: ListNode? = head
+        while n1 != nil && n2 != nil {
+            if n1!.val > n2!.val {
+                pre?.next = n2
+                n2 = n2?.next
+            } else {
+                pre?.next = n1
+                n1 = n1?.next
+            }
+            pre = pre?.next
+        }
+        
+        pre?.next = n1 != nil ? n1 : n2
+        
+        return head.next
+    }
+    
+    
+    /// 合并链表 (递归实现)
+    /// 没想到合并有序链表可以用递归这么简单
+    /// 时间复杂度 O(m+n)
+    /// 空间复杂度 O(m+n)，函数栈
+    func mergeTwoLists2(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        if list1 == nil {
+            return list2
+        }
+        if list2 == nil {
+            return list1
+        }
+        if list1!.val < list2!.val {
+            list1!.next = mergeTwoLists(list1!.next, list2)
+            return list1
+        } else {
+            list2!.next = mergeTwoLists(list1, list2!.next)
+            return list2
+        }
+    }
+    
+    
+    
+    /// 数组转链表
+    func arrayToList(_ array: [Int]) -> ListNode? {
+        guard array.count > 0 else {
+            return nil
+        }
+        var head: ListNode?
+        for i in (0..<array.count).reversed() {
+            if head == nil {
+                head = ListNode(array[i])
+            } else {
+                let tmp = ListNode(array[i])
+                tmp.next = head
+                head = tmp
+            }
+        }
+        return head
+    }
+    /// 链表转数组
+    
+    func listToArray(_ list: ListNode?) -> [Int] {
+        guard list != nil else {
+            return []
+        }
+        var head: ListNode? = list
+        var arr: [Int] = []
+        while let tmp = head {
+            arr.append(tmp.val)
+            head = head?.next
+        }
+        return arr
+    }
+}
+
+
 /// 20. 有效的括号
 /*
  给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
