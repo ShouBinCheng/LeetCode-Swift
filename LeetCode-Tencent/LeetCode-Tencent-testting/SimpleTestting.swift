@@ -9,6 +9,18 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 70. 爬楼梯
+    func testSolution_70() {
+        let ks = [1,2,3,4,5,45]
+        let results = [1,2,3,5,8,1836311903]
+        let solution = Solution_70()
+        
+        for i in 0..<ks.count {
+            let result = solution.climbStairs(ks[i])
+            XCTAssert(result == results[i])
+        }
+    }
+    
     /// 21. 合并两个有序链表
     func testSolution_21() {
         let solution = Solution_21()
