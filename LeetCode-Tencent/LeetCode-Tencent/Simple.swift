@@ -7,6 +7,65 @@
 
 import Foundation
 
+/// 20. 有效的括号
+/*
+ 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+
+ 有效字符串需满足：
+
+ 左括号必须用相同类型的右括号闭合。
+ 左括号必须以正确的顺序闭合。
+ 每个右括号都有一个对应的相同类型的左括号。
+  
+
+ 示例 1：
+
+ 输入：s = "()"
+ 输出：true
+ 示例 2：
+
+ 输入：s = "()[]{}"
+ 输出：true
+ 示例 3：
+
+ 输入：s = "(]"
+ 输出：false
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/valid-parentheses
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+class Solution_20 {
+    
+    /// 自己实现
+    /// 解题思路
+    /// - 使用 map ，成对匹配好对应关系
+    /// - 在结合使用栈先进后出的方式匹配，如果是左括号就压栈，如果是右括号，则看栈顶是否是对应的左括号，是则出栈，否则压栈
+    /// - 最后如果栈是空的，说明字符串中全部的括号都是匹配的，否则就是不匹配的
+    /// - 时间复杂度为 O(n)
+    /// - 空间复杂度为 O(n)
+    func isValid(_ s: String) -> Bool {
+        if s.count < 1 || s.count % 2 != 0 {
+            return false
+        }
+        let map:[String:String] = [")":"(", "]":"[", "}": "{"]
+        var stack: [String] = []
+        let sArray: [String] = s.map { String($0) }
+        for char in sArray {
+            if let left = map[char] {
+                if stack.last == left {
+                    let _ = stack.popLast()
+                } else {
+                    stack.append(char)
+                }
+            } else {
+                stack.append(char)
+            }
+        }
+        return stack.isEmpty
+    }
+}
+
 
 /// 14. 最长公共前缀
 /*
