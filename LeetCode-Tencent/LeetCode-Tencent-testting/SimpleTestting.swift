@@ -8,6 +8,14 @@
 import XCTest
 
 final class SimpleTestting: XCTestCase {
+    
+    /// 14. 最长公共前缀
+    func testSolution_14(){
+        let strs = ["flower","flow","flight"]
+        let result = "fl"
+        let returnResult = Solution_14().longestCommonPrefix(strs)
+        XCTAssert(result == returnResult)
+    }
 
     /// 9. 回文数 测试用例
     func testSolution_9() throws {

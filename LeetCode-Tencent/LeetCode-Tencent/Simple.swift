@@ -7,6 +7,71 @@
 
 import Foundation
 
+
+/// 14. 最长公共前缀
+/*
+ 编写一个函数来查找字符串数组中的最长公共前缀。
+
+ 如果不存在公共前缀，返回空字符串 ""。
+
+  
+
+ 示例 1：
+
+ 输入：strs = ["flower","flow","flight"]
+ 输出："fl"
+ 示例 2：
+
+ 输入：strs = ["dog","racecar","car"]
+ 输出：""
+ 解释：输入不存在公共前缀。
+  
+
+ 提示：
+
+ 1 <= strs.length <= 200
+ 0 <= strs[i].length <= 200
+ strs[i] 仅由小写英文字母组成
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/longest-common-prefix
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+class Solution_14 {
+    
+    /// 自己实现
+    /// 取出字符数最短的字符串
+    /// 每次减少一位遍历该字符串长度，去对比其他字符串
+    /// 时间复杂度 O (n * min(length))，实际复杂度会小于这个值
+    /// 空间复杂度 O(1)
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        if strs.isEmpty {
+            return ""
+        }
+        if strs.count == 1 {
+            return strs[0]
+        }
+        let shortStr: String! = strs.min { str1, str2 in
+            str1.count < str2.count
+        }
+                
+        var offset = shortStr.count
+        var resultStr = ""
+    flag: while offset > 0 {
+            let compareStr = shortStr[shortStr.startIndex ..< shortStr.index(shortStr.startIndex, offsetBy: offset)]
+            for str in strs {
+                if !str.hasPrefix(compareStr) {
+                    offset -= 1
+                    continue flag
+                }
+            }
+            resultStr = String(compareStr)
+            break
+        }
+        return resultStr
+    }
+}
+
 /// 9.回文数
 /*
  给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
