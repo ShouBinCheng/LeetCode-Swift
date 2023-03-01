@@ -57,10 +57,35 @@ import Foundation
 
 class Solution_88 {
     
-    /// 最佳方案：从高位到低位，不需要开辟缓冲区
+    /// 使用Swift 语法特性方案：从高位到低位
     /// - 时间复杂度 O(m+n)
     /// - 空间复杂度 O(1)
     func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
+        var n1 = m - 1
+        var n2 = n - 1
+        for i in stride(from: (m + n - 1), through: 0, by: -1) where n2 >= 0 {
+            if n2 < 0 {
+                break
+            }
+            if n1 < 0 {
+                nums1[i] = nums2[n2]
+                n2 -= 1
+            } else {
+                if nums1[n1] >= nums2[n2] {
+                    nums1[i] = nums1[n1]
+                    n1 -= 1
+                } else {
+                    nums1[i] = nums2[n2]
+                    n2 -= 1
+                }
+            }
+        }
+    }
+    
+    /// 最佳方案：从高位到低位，不需要开辟缓冲区
+    /// - 时间复杂度 O(m+n)
+    /// - 空间复杂度 O(1)
+    func merge12(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
         if n <= 0 || nums2.count <= 0 {
             return
         }
