@@ -9,6 +9,19 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 136. 只出现一次的数字
+    func testSolution_136() {
+        let solution = Solution_136()
+        
+        do {
+            let nums = [4,1,2,1,2]
+            let result = 4
+            let res = solution.singleNumber(nums)
+            XCTAssert(res == result)
+        }
+    }
+    
+    
     /// 121. 买卖股票的最佳时机
     func testSolution_121() {
         let solution = Solution_121()
@@ -28,7 +41,7 @@ final class SimpleTestting: XCTestCase {
         do {
             let nums = [3,9,20,nil,nil,15,7]
             let result = 3
-            var root = solution.createTreeWith(array: nums)
+            let root = solution.createTreeWith(array: nums)
             XCTAssert(result == solution.maxDepth(root))
         }
     }
