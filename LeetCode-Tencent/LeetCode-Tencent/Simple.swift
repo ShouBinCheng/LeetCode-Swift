@@ -141,10 +141,6 @@ public class Solution_160 {
         return prevA
     }
     
-//    func getIntersectionNode2(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
-//
-//        var hashSet: Set<ListNode> = Set()
-//    }
     
     /// 解题思路: （性能比较慢）
     /// 遍历其中一条链表，把每个节点存入 map 。（ Swift 的 Dict 要求 key 必须实现 Hashable 协议，因此换成了数组）
