@@ -9,6 +9,18 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 141. 环形链表
+    func testSolution_141() {
+        let solution = Solution_141()
+        
+        do {
+            let head = [3,2,0,-4], pos = 1
+            let result = true
+            let res = solution.hasCycle(solution.buildListWith(nums: head, pos: pos))
+            XCTAssert(result == res)
+        }
+    }
+    
     /// 136. 只出现一次的数字
     func testSolution_136() {
         let solution = Solution_136()
