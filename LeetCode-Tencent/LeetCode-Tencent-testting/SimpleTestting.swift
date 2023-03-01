@@ -9,6 +9,18 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 121. 买卖股票的最佳时机
+    func testSolution_121() {
+        let solution = Solution_121()
+        do {
+            let prices = [7,1,5,3,6,4]
+            let result = 5
+            let res = solution.maxProfit(prices)
+            XCTAssert(result == res)
+        }
+    }
+    
+    
     /// 104. 二叉树的最大深度
     func testSolution_104() {
         let solution = Solution_104()
