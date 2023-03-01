@@ -63,7 +63,7 @@ public class Solution_141 {
     
     /// 解题思路：快慢指针
     /// 双指针相遇则说明有环
-    /// 时间复杂度 O(nlog n)
+    /// 时间复杂度 O(n)
     /// 空间复杂度 O(1)
     func hasCycle(_ head: ListNode?) -> Bool {
         if head == nil {
