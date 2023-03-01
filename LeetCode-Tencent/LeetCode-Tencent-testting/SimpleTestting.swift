@@ -19,6 +19,7 @@ final class SimpleTestting: XCTestCase {
             let res = solution.hasCycle(solution.buildListWith(nums: head, pos: pos))
             XCTAssert(result == res)
         }
+        ///...
     }
     
     /// 136. 只出现一次的数字
