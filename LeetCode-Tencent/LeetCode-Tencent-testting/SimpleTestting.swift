@@ -9,6 +9,18 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 104. 二叉树的最大深度
+    func testSolution_104() {
+        let solution = Solution_104()
+        
+        do {
+            let nums = [3,9,20,nil,nil,15,7]
+            let result = 3
+            var root = solution.createTreeWith(array: nums)
+            XCTAssert(result == solution.maxDepth(root))
+        }
+    }
+    
     /// 88. 合并两个有序数组
     func testSolution_88() {
         let solution = Solution_88()

@@ -8,6 +8,113 @@
 import Foundation
 
 
+/// 104. 二叉树的最大深度
+/*
+ 给定一个二叉树，找出其最大深度。
+
+ 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+
+ 说明: 叶子节点是指没有子节点的节点。
+
+ 示例：
+ 给定二叉树 [3,9,20,null,null,15,7]，
+
+     3
+    / \
+   9  20
+     /  \
+    15   7
+ 返回它的最大深度 3 。
+
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/maximum-depth-of-binary-tree
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+
+public class Solution_104 {
+    
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init() { self.val = 0; self.left = nil; self.right = nil; }
+        public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+        public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+            self.val = val
+            self.left = left
+            self.right = right
+        }
+    }
+    
+    /// 解题思路：广度优先搜索 BFS（Breadth First Search）
+    /// - 时间复杂度为 O(n)
+    /// - 空间复杂度为 O(w)，其中 W为二叉树的最大宽度，即某一层节点数的最大值
+    func maxDepth(_ root: TreeNode?) -> Int {
+        guard let root = root else {
+            return 0
+        }
+        var queue = [root]
+        var depth = 0
+        while !queue.isEmpty {
+            depth += 1
+            let size = queue.count
+            for _ in 0..<size {
+                let node = queue.remove(at: 0)
+                if let left = node.left {
+                    queue.append(left)
+                }
+                if let right = node.right {
+                    queue.append(right)
+                }
+            }
+        }
+        return depth
+    }
+    
+    /// 解题思路:   深度优先搜索 DFS (Depth First Search)
+    /// 使用递归求解，取左树和右数深度的最大值加上当前层 1
+    /// node 为空则 return 0
+    /// - 时间复杂度 O(n)，n为二叉树的节点数
+    /// - 空间复杂度 O(height), height 表示二叉树的高度，递归函数需要栈空间。
+    func maxDepth2(_ root: TreeNode?) -> Int {
+        if root == nil {
+            return 0
+        }
+        return max(maxDepth(root?.left), maxDepth(root?.right)) + 1
+    }
+    
+    /// 数组转树
+    /// 特点是，左节点永远指向 2*i + 1， 有节点指向 2*i+2
+    /// 遍历完数组就可以生成树
+    func createTreeWith(array: [Int?]) -> TreeNode? {
+        if array.first == nil {
+            return nil
+        }
+        let nodes = array.map { n in
+            if let num = n {
+                return Optional(TreeNode(num))
+            } else {
+                return nil
+            }
+        }
+        
+        for i in 0..<nodes.count {
+            if let node = nodes[i] {
+                let leftIndex = 2*i + 1
+                let rightIndex = 2*i + 2
+                if leftIndex < nodes.count {
+                    node.left = nodes[leftIndex]
+                }
+                if rightIndex < nodes.count {
+                    node.right = nodes[rightIndex]
+                }
+            }
+        }
+        return nodes[0]
+    }
+}
+
 /// 88. 合并两个有序数组
 /*
  给你两个按 非递减顺序 排列的整数数组 nums1 和 nums2，另有两个整数 m 和 n ，分别表示 nums1 和 nums2 中的元素数目。
