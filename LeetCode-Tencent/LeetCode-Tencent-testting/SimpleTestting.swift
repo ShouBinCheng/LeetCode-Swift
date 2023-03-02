@@ -9,6 +9,28 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    
+    /// 169. 多数元素
+    func testSolution_169() {
+        let solution = Solution_169()
+        
+        do {
+            let nums = [3,2,3]
+            let result = 3
+            let res = solution.majorityElement(nums)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let nums = [3,3,3,3,1,2,4,5]
+            let result = 3
+            let res = solution.majorityElement(nums)
+            XCTAssert(res == result)
+        }
+        
+    }
+    
+    
     /// 141. 环形链表
     func testSolution_141() {
         let solution = Solution_141()

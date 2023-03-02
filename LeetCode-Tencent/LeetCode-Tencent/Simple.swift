@@ -7,6 +7,82 @@
 
 import Foundation
 
+/// 169. 多数元素
+/*
+ 给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
+
+ 你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+ 示例 1：
+
+ 输入：nums = [3,2,3]
+ 输出：3
+ 示例 2：
+
+ 输入：nums = [2,2,1,1,1,2,2]
+ 输出：2
+  
+
+ 提示：
+ n == nums.length
+ 1 <= n <= 5 * 104
+ -109 <= nums[i] <= 109
+  
+
+ 进阶：尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/majority-element
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+class Solution_169 {
+    
+    /// 审题很关键：{多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素}
+    /// 因此只有拿最多的数与其他数碰撞抵消就好了
+    /// - 时间复杂度 O(n)
+    /// - 空间复杂度 O(1)
+    func majorityElement(_ nums: [Int]) -> Int {
+        var count = 0
+        var candidate = 0
+        for num in nums {
+            if count == 0 {
+                candidate = num
+            }
+            count += (num == candidate) ? 1 : -1
+        }
+        return candidate
+    }
+    
+    
+    /// 解题思路
+    /// 先将数组排个序
+    /// 然后遍历找出个数最多的数
+    func majorityElement11(_ nums: [Int]) -> Int {
+        if nums.count == 0 {
+            return 0
+        }
+        let sored = nums.sorted()
+        var maxNum: Int = sored[0]
+        var maxCount: Int = 0
+        var currentNum: Int = sored[0]
+        var currentCount: Int = 0
+        for num in sored {
+            if num == currentNum {
+                currentCount += 1
+            } else {
+                currentNum = num
+                currentCount = 1
+            }
+            if maxCount < currentCount {
+                maxCount = currentCount
+                maxNum = currentNum
+            }
+        }
+        return maxNum
+    }
+}
+
+
 /// 160. 相交链表
 /*
  给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。
