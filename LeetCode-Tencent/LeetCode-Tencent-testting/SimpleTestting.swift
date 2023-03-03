@@ -9,6 +9,25 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    ///557. 反转字符串中的单词 III
+    func testSolution_557() {
+        let solution = Solution_557()
+        
+        do {
+            let str = "God Ding"
+            let result = "doG gniD"
+            let res = solution.reverseWords(str)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let str = "Let's take LeetCode contest"
+            let result = "s'teL ekat edoCteeL tsetnoc"
+            let res = solution.reverseWords(str)
+            XCTAssert(res == result)
+        }
+        
+    }
     
     /// 169. 多数元素
     func testSolution_169() {

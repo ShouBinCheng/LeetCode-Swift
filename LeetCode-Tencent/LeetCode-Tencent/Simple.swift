@@ -7,6 +7,119 @@
 
 import Foundation
 
+/// 557. 反转字符串中的单词 III
+/*
+ 给定一个字符串 s ，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+
+  
+
+ 示例 1：
+
+ 输入：s = "Let's take LeetCode contest"
+ 输出："s'teL ekat edoCteeL tsetnoc"
+ 示例 2:
+
+ 输入： s = "God Ding"
+ 输出："doG gniD"
+  
+
+ 提示：
+
+ 1 <= s.length <= 5 * 104
+ s 包含可打印的 ASCII 字符。
+ s 不包含任何开头或结尾空格。
+ s 里 至少 有一个词。
+ s 中的所有单词都用一个空格隔开。
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/reverse-words-in-a-string-iii
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+class Solution_557 {
+    
+    /// 解题思路
+    /// 将字符串转为字符数组
+    /// 遍历字符数组，遇到 " " 就进行前面的字符倒序
+    /// 到数组末尾时，再将前面的字符倒叙
+    /// 最后把数组转为字符串返回
+    /// - 时间复杂度 O(2n)
+    /// - 空间复杂度 O(n), n为包含的字符个数
+    func reverseWords(_ s: String) -> String {
+        var charsArr = Array(s)
+        var upIndex = 0
+        for i in 0..<charsArr.count {
+            let char = charsArr[i]
+            if char == " " {
+                for j in 0..<(i+1-upIndex)/2 {
+                    charsArr.swapAt(upIndex+j, i-j-1)
+                }
+                upIndex = i+1 < charsArr.count ? i+1 : i
+            } else if i == charsArr.count - 1 {
+                for j in 0..<(i+1-upIndex)/2 {
+                    charsArr.swapAt(upIndex+j, i-j)
+                }
+            }
+        }
+        return String(charsArr)
+    }
+    
+    /// 解题思路2 (测试超时)
+    /// 使用字符串替换的思路
+    /// - 时间复杂度 O(2n)
+    /// - 空间复杂度 O(n)
+    func reverseWords12(_ s: String) -> String {
+        var newStr = s
+        var stack: [Substring] = []
+        for i in 0..<newStr.count {
+            let startIndex = newStr.index(newStr.startIndex, offsetBy: i)
+            let endIndex = newStr.index(startIndex, offsetBy: 1)
+            let range = startIndex..<endIndex
+            let subStr = newStr[range]
+            if subStr != " " {
+                stack.append(subStr)
+            } else {
+                var start = startIndex
+                var end = endIndex
+                while !stack.isEmpty {
+                    start = newStr.index(start, offsetBy: -1)
+                    end = newStr.index(end, offsetBy: -1)
+                    let range = start..<end
+                    newStr.replaceSubrange(range, with: stack.remove(at: 0))
+                }
+            }
+            print(subStr)
+        }
+        var start = newStr.endIndex
+        while !stack.isEmpty {
+            start = newStr.index(start, offsetBy: -1)
+            let end = newStr.index(start, offsetBy: +1)
+            let range = start..<end
+            newStr.replaceSubrange(range, with: stack.remove(at: 0))
+        }
+        return newStr
+    }
+    
+    /// 解题思路(首次实现)
+    /// 先将字符串按空格切割为数组
+    /// 在将数组中的每个字符串反转
+    /// 将数组字符串按空格拼接成新的字符串
+    /// 时间复杂度 O(2n)
+    /// 空间复杂度 O(n)
+    func reverseWords11(_ s: String) -> String {
+        let strArr: [String] = s.components(separatedBy: " ")
+        let newStrArr: [String] = strArr.map { String($0.reversed()) }
+        var newStr = ""
+        for i in 0..<newStrArr.count {
+            newStr += newStrArr[i]
+            if i != newStrArr.count-1 {
+                newStr += " "
+            }
+        }
+        return newStr
+    }
+}
+
+
 /// 169. 多数元素
 /*
  给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
