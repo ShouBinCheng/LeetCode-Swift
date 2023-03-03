@@ -9,6 +9,28 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 206. 反转链表
+    func testSolution_206() {
+        let solution = Solution_206()
+        do {
+            let nums = [1,2,3,4,5]
+            let result = [5,4,3,2,1]
+            let list = solution.buildListWith(nums: nums, pos: -1)
+            let newList = solution.reverseList(list)
+            let res = solution.arrayWith(list: newList)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let nums: [Int] = []
+            let result: [Int] = []
+            let list = solution.buildListWith(nums: nums, pos: -1)
+            let newList = solution.reverseList(list)
+            let res = solution.arrayWith(list: newList)
+            XCTAssert(res == result)
+        }
+    }
+    
     ///557. 反转字符串中的单词 III
     func testSolution_557() {
         let solution = Solution_557()

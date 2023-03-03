@@ -7,6 +7,119 @@
 
 import Foundation
 
+/// 206. 反转链表
+/*
+ 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+  
+ 示例 1：
+
+ 输入：head = [1,2,3,4,5]
+ 输出：[5,4,3,2,1]
+ 示例 2：
+
+ 输入：head = [1,2]
+ 输出：[2,1]
+ 示例 3：
+
+ 输入：head = []
+ 输出：[]
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/reverse-linked-list
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+
+class Solution_206 {
+    
+    public class ListNode {
+        public var val: Int
+        public var next: ListNode?
+        public init() { self.val = 0; self.next = nil; }
+        public init(_ val: Int) { self.val = val; self.next = nil; }
+        public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+    }
+    
+    /// 递归法
+    /// 相等于把每一个节点的相连两个节点都放到方法栈中进行展开
+    /// 当前方法栈只需要负责把后节点指针指向前节点，然后前节点指针设置为 nil
+    /// 这里需要注意不能使用return 回来的newhead 节点做指向转变，以为return回来的是新的头节点只有一个
+    /// - 时间复杂度为 O(n)
+    /// - 空间复杂度为 O(n), 这里的n是节点个数，主要是开辟方法栈消耗的内存空间
+    func reverseList(_ head: ListNode?) -> ListNode? {
+        guard let head = head, let next = head.next else {
+            return head
+        }
+        let newHead = reverseList(next)
+        /// 这里 newHead 是最后一个点，所以不能用 newHead?.next = head
+        head.next?.next = head
+        head.next = nil
+        return newHead
+    }
+    
+    /// 解题思路，while 循环遍历链表
+    /// 取一个新进的 prev 用于每次前进一步
+    /// 取一个 lastOne 用于记录上一个
+    /// 取一个 newHead 记录最新的 head
+    /// - 时间复杂度 O(n)
+    /// - 空间复杂的 O(1)
+    func reverseList11(_ head: ListNode?) -> ListNode? {
+        var newHead = head
+        var prev = head
+        var lastOne: ListNode?
+        while prev != nil {
+            let currnet = prev
+            let next = prev?.next
+            currnet?.next = lastOne
+            lastOne = currnet
+            prev = next
+            if prev != nil {
+                newHead = prev
+            }
+        }
+        return newHead
+    }
+    
+    /// 数组创建链表
+    /// - Parameters:
+    ///   - nums: 数组
+    ///   - pos: 环点的位置， -1 则无环
+    /// - Returns: head
+    func buildListWith(nums: [Int], pos: Int) -> ListNode? {
+        if nums.isEmpty {
+            return nil
+        }
+        let head: ListNode? = ListNode(0)
+        var prev: ListNode? = head
+        var posNode: ListNode?
+        var buildCount = 0
+        
+        for num in nums {
+            prev?.next = ListNode(num)
+            if buildCount == pos {
+                posNode = prev?.next
+            }
+            prev = prev?.next
+            buildCount += 1
+        }
+        prev?.next = posNode
+        return head?.next
+    }
+    
+    func arrayWith(list head: ListNode?) -> [Int] {
+        if head == nil {
+            return []
+        }
+        var nums: [Int] = []
+        var prev = head
+        while prev != nil {
+            nums.append(prev!.val)
+            prev = prev?.next
+        }
+        return nums
+    }
+}
+
+
 /// 557. 反转字符串中的单词 III
 /*
  给定一个字符串 s ，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
