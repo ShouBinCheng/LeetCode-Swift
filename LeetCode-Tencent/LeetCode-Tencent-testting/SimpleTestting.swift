@@ -9,6 +9,19 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 292. Nim 游戏
+    func testSolution_292() {
+        let solution = Solution_292()
+        
+        do {
+            let nums = [4,8,12,3,6,9]
+            let results = [false,false,false,true,true,true]
+            let res = nums.map { solution.canWinNim($0) }
+            XCTAssert(res == results)
+        }
+        
+    }
+    
     /// 231. 2 的幂
     func testSolution_231() {
         let solution = Solution_231()
