@@ -9,6 +9,17 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 231. 2 的幂
+    func testSolution_231() {
+        let solution = Solution_231()
+        do {
+            let n = 16
+            let result = true
+            let res = solution.isPowerOfTwo(n)
+            XCTAssert(res == result)
+        }
+    }
+    
     /// 217. 存在重复元素
     func testSolution_217() {
         let solution = Solution_217()

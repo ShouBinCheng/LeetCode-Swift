@@ -7,6 +7,104 @@
 
 import Foundation
 
+/// 231. 2 的幂
+/*
+ 给你一个整数 n，请你判断该整数是否是 2 的幂次方。如果是，返回 true ；否则，返回 false 。
+
+ 如果存在一个整数 x 使得 n == 2x ，则认为 n 是 2 的幂次方。
+
+  
+
+ 示例 1：
+
+ 输入：n = 1
+ 输出：true
+ 解释：20 = 1
+ 示例 2：
+
+ 输入：n = 16
+ 输出：true
+ 解释：24 = 16
+ 示例 3：
+
+ 输入：n = 3
+ 输出：false
+ 示例 4：
+
+ 输入：n = 4
+ 输出：true
+ 示例 5：
+
+ 输入：n = 5
+ 输出：false
+  
+
+ 提示：
+
+ -231 <= n <= 231 - 1
+
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/power-of-two
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+
+class Solution_231 {
+    
+    /// 数学法 + 计算机法
+    /// 把乘除运算换成位移运算 >>>
+    func isPowerOfTwo(_ n: Int) -> Bool {
+        if n <= 0 {
+            return false
+        }
+        if n == 1 {
+            return true
+        }
+        var num = n
+        while num > 1 {
+            let newNum = num >> 1
+            if num != newNum << 1 {
+                return false
+            }
+            num = newNum
+        }
+        return true
+    }
+    
+    
+    /// 计算机法
+    /// 1:000001 & 000000  = 0
+    /// 2:000010 & 000001  = 0
+    /// 4:000100 & 000011  = 0
+    /// 时间复杂度 O(1)
+    /// 空间复杂度 O(0)
+    func isPowerOfTwo12(_ n: Int) -> Bool {
+        if n <= 0 { return false }
+        return n & (n - 1) == 0
+    }
+    
+    /// 解题思路 数学法
+    /// 2 的幂数肯定能被 2 整除
+    /// 时间复杂度 O(log n)
+    /// 空间复杂度 O(1)
+    func isPowerOfTwo11(_ n: Int) -> Bool {
+        if n <= 0 {
+            return false
+        }
+        if n == 1 {
+            return true
+        }
+        var num = n
+        while num > 1 {
+            if num == num / 2 * 2 {
+                return false
+            }
+            num = num / 2
+        }
+        return true
+    }
+}
+
 /// 217. 存在重复元素
 /*
  给你一个整数数组 nums 。如果任一值在数组中出现 至少两次 ，返回 true ；如果数组中每个元素互不相同，返回 false 。
