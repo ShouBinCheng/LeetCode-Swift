@@ -10,8 +10,41 @@ import XCTest
 final class MediumTestting: XCTestCase {
 
     /// 简单：
-    func testExample() throws {
+    func testSolution_2() {
+        let solution = Solution_2()
         
+        do {
+            let nums1 = [2,4,3]
+            let nums2 = [5,6,4]
+            let result = [7,0,8]
+            let l1 = solution.buildListWith(nums: nums1, pos: -1)
+            let l2 = solution.buildListWith(nums: nums2, pos: -1)
+            let sumList = solution.addTwoNumbers(l1, l2)
+            let res = solution.arrayWith(list: sumList)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let nums1 = [0]
+            let nums2 = [0]
+            let result = [0]
+            let l1 = solution.buildListWith(nums: nums1, pos: -1)
+            let l2 = solution.buildListWith(nums: nums2, pos: -1)
+            let sumList = solution.addTwoNumbers(l1, l2)
+            let res = solution.arrayWith(list: sumList)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let nums1 = [9,9,9,9,9,9,9]
+            let nums2 = [9,9,9,9]
+            let result = [8,9,9,9,0,0,0,1]
+            let l1 = solution.buildListWith(nums: nums1, pos: -1)
+            let l2 = solution.buildListWith(nums: nums2, pos: -1)
+            let sumList = solution.addTwoNumbers(l1, l2)
+            let res = solution.arrayWith(list: sumList)
+            XCTAssert(res == result)
+        }
     }
 
 }
