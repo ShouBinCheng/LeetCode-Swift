@@ -9,6 +9,17 @@ import XCTest
 
 final class SimpleTestting: XCTestCase {
     
+    /// 217. 存在重复元素
+    func testSolution_217() {
+        let solution = Solution_217()
+        do {
+            let nums = [1,2,3,1]
+            let result = true
+            let res = solution.containsDuplicate(nums)
+            XCTAssert(res == result)
+        }
+    }
+    
     /// 206. 反转链表
     func testSolution_206() {
         let solution = Solution_206()
