@@ -9,6 +9,31 @@ import XCTest
 
 final class MediumTestting: XCTestCase {
 
+    /// 237. 删除链表中的节点
+    func testSolution_237() {
+        let solution = Solution_237()
+        
+        do {
+            let nums = [4,5,1,9], node = 5
+            let result = [4,1,9]
+            var deleteNode: Solution_237.ListNode?
+            let head = solution.buildListWith(nums: nums, pos: node, &deleteNode)
+            solution.deleteNode(deleteNode)
+            let res = solution.arrayWith(list: head)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let nums = [4,5,1,9], node = 1
+            let result = [4,5,9]
+            var deleteNode: Solution_237.ListNode?
+            let head = solution.buildListWith(nums: nums, pos: node, &deleteNode)
+            solution.deleteNode(deleteNode)
+            let res = solution.arrayWith(list: head)
+            XCTAssert(res == result)
+        }
+    }
+    
     /// 236. 二叉树的最近公共祖先
     func testSolution_236() {
         let solution = Solution_236()

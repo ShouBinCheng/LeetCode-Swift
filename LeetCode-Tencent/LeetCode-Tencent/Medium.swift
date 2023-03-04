@@ -7,6 +7,106 @@
 
 import Foundation
 
+//MARK: - 237. 删除链表中的节点
+/*
+ 有一个单链表的 head，我们想删除它其中的一个节点 node。
+
+ 给你一个需要删除的节点 node 。你将 无法访问 第一个节点  head。
+
+ 链表的所有值都是 唯一的，并且保证给定的节点 node 不是链表中的最后一个节点。
+
+ 删除给定的节点。注意，删除节点并不是指从内存中删除它。这里的意思是：
+
+ 给定节点的值不应该存在于链表中。
+ 链表中的节点数应该减少 1。
+ node 前面的所有值顺序相同。
+ node 后面的所有值顺序相同。
+ 自定义测试：
+
+ 对于输入，你应该提供整个链表 head 和要给出的节点 node。node 不应该是链表的最后一个节点，而应该是链表中的一个实际节点。
+ 我们将构建链表，并将节点传递给你的函数。
+ 输出将是调用你函数后的整个链表。
+  
+
+ 示例 1：
+
+
+ 输入：head = [4,5,1,9], node = 5
+ 输出：[4,1,9]
+ 解释：指定链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -> 1 -> 9
+ 示例 2：
+
+
+ 输入：head = [4,5,1,9], node = 1
+ 输出：[4,5,9]
+ 解释：指定链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -> 5 -> 9
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/delete-node-in-a-linked-list
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+
+class Solution_237 {
+        
+    public class ListNode {
+        public var val: Int
+        public var next: ListNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.next = nil
+        }
+    }
+
+    /// 解题思路：单向遍历删除
+    /// 把下一个节点的值赋值给当前节点
+    /// 当前节点 next 指向下下节点
+    /// 实际删除的是下一个节点
+    /// 但是如果当前是末尾节点怎么删除呢？
+    /// - 时间复杂度 O(1)
+    /// - 空间复杂度 O(1)
+    func deleteNode(_ node: ListNode?) {
+        guard let node = node  else {
+            return
+        }
+        node.val = node.next?.val ?? 0
+        node.next = node.next?.next
+    }
+    
+    /// 创建链表
+    func buildListWith(nums: [Int], pos: Int, _ posNode: inout ListNode?) -> ListNode? {
+        if nums.isEmpty {
+            return nil
+        }
+        let head: ListNode? = ListNode(0)
+        var prev: ListNode? = head
+        var buildCount = 0
+        
+        for num in nums {
+            prev?.next = ListNode(num)
+            if pos == num {
+                posNode = prev?.next
+            }
+            prev = prev?.next
+            buildCount += 1
+        }
+        return head?.next
+    }
+    
+    /// 链表转数组
+    func arrayWith(list head: ListNode?) -> [Int] {
+        if head == nil {
+            return []
+        }
+        var nums: [Int] = []
+        var prev = head
+        while prev != nil {
+            nums.append(prev!.val)
+            prev = prev?.next
+        }
+        return nums
+    }
+}
+
 //MARK: - 236. 二叉树的最近公共祖先
 /*
  给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
