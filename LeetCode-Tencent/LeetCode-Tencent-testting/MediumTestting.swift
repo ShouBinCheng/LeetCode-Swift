@@ -9,6 +9,26 @@ import XCTest
 
 final class MediumTestting: XCTestCase {
 
+    /// 238. 除自身以外数组的乘积
+    func testSolution_238() {
+        let solution = Solution_238()
+        
+        do {
+            let nums = [1,2,3,4]
+            let reslut = [24,12,8,6]
+            let res = solution.productExceptSelf(nums)
+            XCTAssert(res == reslut)
+        }
+        
+        do {
+            let nums = [-1,1,0,-3,3]
+            let reslut = [0,0,9,0,0]
+            let res = solution.productExceptSelf(nums)
+            XCTAssert(res == reslut)
+        }
+    }
+    
+    
     /// 237. 删除链表中的节点
     func testSolution_237() {
         let solution = Solution_237()
