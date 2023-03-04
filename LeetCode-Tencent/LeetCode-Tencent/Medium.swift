@@ -7,7 +7,144 @@
 
 import Foundation
 
+//MARK: - 230. 二叉搜索树中第K小的元素
+/*
+ 给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）。
+
+ 示例 1：
+
+ 输入：root = [3,1,4,null,2], k = 1
+ 输出：1
+ 示例 2：
+
+
+ 输入：root = [5,3,6,2,4,null,null,1], k = 3
+ 输出：3
+
+ 提示：
+
+ 树中的节点数为 n 。
+ 1 <= k <= n <= 104
+ 0 <= Node.val <= 104
+  
+
+ 进阶：如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 k 小的值，你将如何优化算法？
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/kth-smallest-element-in-a-bst
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+
+class Solution_230 {
+    
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init() { self.val = 0; self.left = nil; self.right = nil; }
+        public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+        public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+            self.val = val
+            self.left = left
+            self.right = right
+        }
+    }
+    
+    
+    /// 解题思路2：深度优先搜索
+    /// 左节点 < 当前节点 < 右节点
+    /// 左树优先搜索， 每个节点k - 1
+    /// 当 k 等于 0 是返回当前节点数
+    /// - 时间复杂度 O(n)
+    /// - 空间复杂度 O(1)
+    func kthSmallest(_ root: TreeNode?, _ k: Int) -> Int {
+        var k = k
+        var kMinNum = 0
+        dfs1(root, &k, &kMinNum)
+        return kMinNum
+    }
+    
+    func dfs1(_ root: TreeNode?, _ k: inout Int, _ kMinNum: inout Int) {
+        guard let root = root else {
+            return
+        }
+        if let left = root.left {
+            dfs1(left, &k, &kMinNum)
+        }
+        switch k {
+        case 1:
+            kMinNum = root.val
+            k -= 1
+            break
+        case let x where x > 1:
+            k -= 1
+            dfs1(root.right, &k, &kMinNum)
+            break
+        default:
+            return
+        }
+    }
+    
+    
+    
+    /// 解题思路1：深度优先搜索
+    /// 把所有遍历到的数存入 stack 中
+    /// 在那 stack 数组排序
+    /// 返回 stack 数组中第 k-0 个数
+    /// - 时间复杂度比较差 O(n+nlogn)
+    /// - 空间复杂度 O(n)
+    func kthSmallest11(_ root: TreeNode?, _ k: Int) -> Int {
+        guard let _ = root else {
+            return 0
+        }
+        var stack: [Int] = []
+        dfs(root, k, &stack)
+        stack = stack.sorted()
+        return stack.count >= k ? stack[k-1] : 0
+    }
+    
+    func dfs(_ root: TreeNode?, _ k: Int, _ stack: inout [Int]){
+        guard let root = root else {
+            return
+        }
+        stack.append(root.val)
+        dfs(root.left, k, &stack)
+        dfs(root.right, k, &stack)
+    }
+    
+    /// 数组转树
+    /// 特点是，左节点永远指向 2*i + 1， 有节点指向 2*i+2
+    /// 遍历完数组就可以生成树
+    func createTreeWith(array: [Int?]) -> TreeNode? {
+        if array.first == nil {
+            return nil
+        }
+        let nodes = array.map { n in
+            if let num = n {
+                return Optional(TreeNode(num))
+            } else {
+                return nil
+            }
+        }
+        
+        for i in 0..<nodes.count {
+            if let node = nodes[i] {
+                let leftIndex = 2*i + 1
+                let rightIndex = 2*i + 2
+                if leftIndex < nodes.count {
+                    node.left = nodes[leftIndex]
+                }
+                if rightIndex < nodes.count {
+                    node.right = nodes[rightIndex]
+                }
+            }
+        }
+        return nodes[0]
+    }
+}
+
 //MARK: - *** 5. 最长回文子串
+//TODO: 未学会
 /*
  给你一个字符串 s，找到 s 中最长的回文子串。
 

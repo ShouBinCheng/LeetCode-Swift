@@ -9,6 +9,27 @@ import XCTest
 
 final class MediumTestting: XCTestCase {
 
+    /// 230. 二叉搜索树中第K小的元素
+    func testSolution_230() {
+        let solution = Solution_230()
+        
+        do {
+            let root = [3,1,4,nil,2], k = 1
+            let reslut = 1
+            let tree = solution.createTreeWith(array: root)
+            let res = solution.kyhSmallest(tree, k)
+            XCTAssert(res == reslut)
+        }
+        
+        do {
+            let root = [5,3,6,2,4,nil,nil,1], k = 3
+            let reslut = 3
+            let tree = solution.createTreeWith(array: root)
+            let res = solution.kyhSmallest(tree, k)
+            XCTAssert(res == reslut)
+        }
+    }
+    
     /// 5. 最长回文子串
     func testSoluton_5() {
         let solution = Solution_5()
