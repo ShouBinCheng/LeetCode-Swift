@@ -7,6 +7,147 @@
 
 import Foundation
 
+//MARK: - 236. 二叉树的最近公共祖先
+/*
+ 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+
+ 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+
+ 示例 1：
+
+
+ 输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+ 输出：3
+ 解释：节点 5 和节点 1 的最近公共祖先是节点 3 。
+ 示例 2：
+
+
+ 输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+ 输出：5
+ 解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。
+ 示例 3：
+
+ 输入：root = [1,2], p = 1, q = 2
+ 输出：1
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+
+class Solution_236 {
+
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.left = nil
+            self.right = nil
+        }
+    }
+    
+    /// 优化写法：深度遍历二叉树
+    /// 深度遍历找到当前 root === p || root === q 返回 root
+    /// 如果左返回和右返回都不为 nil 则返回当前 root
+    /// 如果左返回不为空 则返回 左
+    /// 如果右返回不为空 则返回 右
+    func lowestCommonAncestor(_ root: TreeNode?,
+                            _ p: TreeNode?,
+                            _ q: TreeNode?)
+    -> TreeNode? {
+        if root == nil || root === p || root === q {
+            return root
+        }
+        let l = lowestCommonAncestor(root?.left, p, q)
+        let r = lowestCommonAncestor(root?.right, p, q)
+        if l != nil, r != nil { return root }
+        if l != nil { return l }
+        if r != nil { return r }
+        return nil
+    }
+    
+    
+    /// 解题思路：深度优先搜索（遍历所有节点）
+    /// 如果同事含有 p 且 q 返回当前 root 节点
+    /// 使用 Swift 的 tuple 返回
+    /// - 时间复杂度 O(n)
+    /// - 空间复杂度 O(logn)
+    func lowestCommonAncestor11(_ root: TreeNode?,
+                            _ p: TreeNode?,
+                            _ q: TreeNode?)
+    -> TreeNode? {
+        guard let root = root,
+             let p = p,
+              let q = q else {
+            return root
+        }
+        return dfs(root, p, q).0
+    }
+    
+    func dfs(_ root: TreeNode?, _ p: TreeNode, _ q: TreeNode) -> (TreeNode?,Bool) {
+        guard let root  = root else {
+            return (nil, false)
+        }
+        let lson = dfs(root.left, p, q)
+        let rson = dfs(root.right, p, q)
+        let currentIsHas = (root.val == p.val || root.val == q.val)
+        let isHas = (lson.1 || rson.1 || currentIsHas)
+        var node: TreeNode? = lson.0 ?? rson.0 ?? nil
+        if ((lson.1 && rson.1) ||
+            (lson.1 && currentIsHas) ||
+            (rson.1 && currentIsHas)) &&
+            (lson.0 == nil && rson.0 == nil){
+            node = root
+        }
+        return (node, isHas)
+    }
+    
+    
+    
+    /// 数组转树
+    /// 特点是，左节点永远指向 2*i + 1， 有节点指向 2*i+2
+    /// 遍历完数组就可以生成树
+    func createTreeWith(array: [Int?],
+                        p: Int,
+                        pNode: inout TreeNode?,
+                        q: Int,
+                        qNode: inout TreeNode?)
+    -> TreeNode? {
+        if array.first == nil {
+            return nil
+        }
+        let nodes = array.map { n in
+            if let num = n {
+                let node = TreeNode(num)
+                if num == p {
+                    pNode = node
+                } else if num == q {
+                    qNode = node
+                }
+                return Optional(node)
+            } else {
+                return nil
+            }
+        }
+        
+        for i in 0..<nodes.count {
+            if let node = nodes[i] {
+                let leftIndex = 2*i + 1
+                let rightIndex = 2*i + 2
+                if leftIndex < nodes.count {
+                    node.left = nodes[leftIndex]
+                }
+                if rightIndex < nodes.count {
+                    node.right = nodes[rightIndex]
+                }
+            }
+        }
+        return nodes[0]
+    }
+}
+
 //MARK: - 235. 二叉搜索树的最近公共祖先
 /*
  给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。

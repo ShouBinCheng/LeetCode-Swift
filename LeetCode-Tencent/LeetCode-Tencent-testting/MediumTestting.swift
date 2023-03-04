@@ -9,6 +9,36 @@ import XCTest
 
 final class MediumTestting: XCTestCase {
 
+    /// 236. 二叉树的最近公共祖先
+    func testSolution_236() {
+        let solution = Solution_236()
+        
+        do {
+            let nums = [3,5,1,6,2,0,8,nil,nil,7,4]
+            let p = 5, q = 4
+            let result = 5
+            var pNode: Solution_236.TreeNode?
+            var qNode: Solution_236.TreeNode?
+            let root = solution.createTreeWith(array: nums, p: p, pNode: &pNode, q: q, qNode: &qNode)
+            let resNode = solution.lowestCommonAncestor(root, pNode, qNode)
+            let res = resNode?.val ?? 0
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let nums = [3,5,1,6,2,0,8,nil,nil,7,4]
+            let p = 5, q = 1
+            let result = 3
+            var pNode: Solution_236.TreeNode?
+            var qNode: Solution_236.TreeNode?
+            let root = solution.createTreeWith(array: nums, p: p, pNode: &pNode, q: q, qNode: &qNode)
+            let resNode = solution.lowestCommonAncestor(root, pNode, qNode)
+            let res = resNode?.val ?? 0
+            XCTAssert(res == result)
+        }
+        
+    }
+    
     /// 235. 二叉搜索树的最近公共祖先
     func testSolution_235() {
         let solution = Solution_235()
