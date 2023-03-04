@@ -9,6 +9,46 @@ import XCTest
 
 final class MediumTestting: XCTestCase {
 
+    /// 7. 整数反转
+    func testSolution_7() {
+        let soution = Solution_7()
+        
+        do {
+            let num: Int = 1534236469
+            let result: Int = 0
+            let res = soution.reverse(num)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let num: Int = 123
+            let result: Int = 321
+            let res = soution.reverse(num)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let num: Int = 0
+            let result: Int = 0
+            let res = soution.reverse(num)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let num: Int = 120
+            let result: Int = 21
+            let res = soution.reverse(num)
+            XCTAssert(res == result)
+        }
+        
+        do {
+            let num: Int = -123
+            let result: Int = -321
+            let res = soution.reverse(num)
+            XCTAssert(res == result)
+        }
+    }
+    
     /// 238. 除自身以外数组的乘积
     func testSolution_238() {
         let solution = Solution_238()
