@@ -9,6 +9,36 @@ import XCTest
 
 final class MediumTestting: XCTestCase {
 
+    /// 235. 二叉搜索树的最近公共祖先
+    func testSolution_235() {
+        let solution = Solution_235()
+        
+        do {
+            let nums = [6,2,8,0,4,7,9,nil,nil,3,5]
+            let p = 2, q = 8
+            let result = 6
+            var pNode: Solution_235.TreeNode?
+            var qNode: Solution_235.TreeNode?
+            let root = solution.createTreeWith(array: nums, p: p, pNode: &pNode, q: q, qNode: &qNode)
+            let resNode = solution.lowestCommonAncestor(root, pNode, qNode)
+            let res = resNode?.val ?? 0
+            XCTAssert(res == result)
+        }
+        
+        
+        do {
+            let nums = [6,2,8,0,4,7,9,nil,nil,3,5]
+            let p = 2, q = 4
+            let result = 2
+            var pNode: Solution_235.TreeNode?
+            var qNode: Solution_235.TreeNode?
+            let root = solution.createTreeWith(array: nums, p: p, pNode: &pNode, q: q, qNode: &qNode)
+            let resNode = solution.lowestCommonAncestor(root, pNode, qNode)
+            let res = resNode?.val ?? 0
+            XCTAssert(res == result)
+        }
+    }
+    
     /// 230. 二叉搜索树中第K小的元素
     func testSolution_230() {
         let solution = Solution_230()
@@ -17,7 +47,7 @@ final class MediumTestting: XCTestCase {
             let root = [3,1,4,nil,2], k = 1
             let reslut = 1
             let tree = solution.createTreeWith(array: root)
-            let res = solution.kyhSmallest(tree, k)
+            let res = solution.kthSmallest(tree, k)
             XCTAssert(res == reslut)
         }
         
@@ -25,7 +55,7 @@ final class MediumTestting: XCTestCase {
             let root = [5,3,6,2,4,nil,nil,1], k = 3
             let reslut = 3
             let tree = solution.createTreeWith(array: root)
-            let res = solution.kyhSmallest(tree, k)
+            let res = solution.kthSmallest(tree, k)
             XCTAssert(res == reslut)
         }
     }

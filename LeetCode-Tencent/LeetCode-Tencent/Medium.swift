@@ -7,6 +7,154 @@
 
 import Foundation
 
+//MARK: - 235. 二叉搜索树的最近公共祖先
+/*
+ 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+
+ 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+
+ 例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]
+
+ 示例 1:
+
+ 输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+ 输出: 6
+ 解释: 节点 2 和节点 8 的最近公共祖先是 6。
+ 示例 2:
+
+ 输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+ 输出: 2
+ 解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。
+  
+ 说明:
+
+ 所有节点的值都是唯一的。
+ p、q 为不同节点且均存在于给定的二叉搜索树中。
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+class Solution_235 {
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.left = nil
+            self.right = nil
+        }
+    }
+    
+    /// 解题思路：深度优先搜索 （while 法）
+    /// - 时间复杂度 O(log n)
+    /// - 空间复杂度 O(1)
+    func lowestCommonAncestor(_ root: TreeNode?,
+                          _ p: TreeNode?,
+                          _ q: TreeNode?)
+    -> TreeNode? {
+        guard var root = root,
+             let p = p,
+             let q = q else {
+            return nil
+        }
+        let min = min(p.val, q.val)
+        let max = max(p.val, q.val)
+        while root.val < min || root.val > max {
+            if root.val < min, let right = root.right {
+                root = right
+            } else if root.val > max, let left = root.left {
+                root = left
+            } else {
+                break
+            }
+        }
+        return root
+    }
+    
+    
+    /// 解题思路：深度优先搜索 （递归法）
+    /// root 节点肯定是 p 和 q 的公共祖节点
+    /// 深度优先搜索，先遍历左右节点，在遍历自己节点。
+    /// 直到不没有公共节点时，记录当前节点
+    /// f(f(n,n2),f(n,n2)) 如果 f(n1,n2) 有公共节点，则返回 f(n1,n2)的节点
+    /// p、q 先区分min、max。
+    /// 如何 root 小于 min，则使用右子树
+    /// 如果 root 大于 max，则使用左子树
+    /// 否则返回当前子树
+    /// - 时间复杂度 O(logn)
+    /// - 空间复杂度 O(lonn)
+    func lowestCommonAncestor11(_ root: TreeNode?,
+                          _ p: TreeNode?,
+                          _ q: TreeNode?)
+    -> TreeNode? {
+        guard let p = p, let q = q, p.val != q.val else {
+            return p
+        }
+        guard let root = root else {
+            return root
+        }
+        let min = p.val < q.val ? p : q
+        let max = p.val < q.val ? q : p
+        return dfs(root, min: min, max: max)
+    }
+    
+    func dfs(_ root: TreeNode?, min: TreeNode, max: TreeNode) -> TreeNode? {
+        guard let root = root else {
+            return root
+        }
+        if root.val < min.val {
+            return dfs(root.right, min: min, max: max)
+        } else if root.val > max.val {
+            return dfs(root.left, min: min, max: max)
+        }
+        return root
+    }
+    
+    /// 数组转树
+    /// 特点是，左节点永远指向 2*i + 1， 有节点指向 2*i+2
+    /// 遍历完数组就可以生成树
+    func createTreeWith(array: [Int?],
+                        p: Int,
+                        pNode: inout TreeNode?,
+                        q: Int,
+                        qNode: inout TreeNode?)
+    -> TreeNode? {
+        if array.first == nil {
+            return nil
+        }
+        let nodes = array.map { n in
+            if let num = n {
+                let node = TreeNode(num)
+                if num == p {
+                    pNode = node
+                } else if num == q {
+                    qNode = node
+                }
+                return Optional(node)
+            } else {
+                return nil
+            }
+        }
+        
+        for i in 0..<nodes.count {
+            if let node = nodes[i] {
+                let leftIndex = 2*i + 1
+                let rightIndex = 2*i + 2
+                if leftIndex < nodes.count {
+                    node.left = nodes[leftIndex]
+                }
+                if rightIndex < nodes.count {
+                    node.right = nodes[rightIndex]
+                }
+            }
+        }
+        return nodes[0]
+    }
+}
+
+
 //MARK: - 230. 二叉搜索树中第K小的元素
 /*
  给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）。
