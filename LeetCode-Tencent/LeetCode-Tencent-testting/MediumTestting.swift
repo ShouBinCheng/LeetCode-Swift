@@ -9,6 +9,53 @@ import XCTest
 
 final class MediumTestting: XCTestCase {
 
+    /// 8. 字符串转换整数 (atoi)
+    func testSolution_8() {
+        let solution = Solution_8()
+        
+        do {
+            let s = "4193 with words"
+            let resutl = 4193
+            let res = solution.myAtoi(s)
+            XCTAssert(res == resutl)
+        }
+        
+        do {
+            let s = "   -42"
+            let resutl = -42
+            let res = solution.myAtoi(s)
+            XCTAssert(res == resutl)
+        }
+        
+        do {
+            let s = "42"
+            let resutl = 42
+            let res = solution.myAtoi(s)
+            XCTAssert(res == resutl)
+        }
+        
+        do {
+            let s = "words and 987"
+            let resutl = 0
+            let res = solution.myAtoi(s)
+            XCTAssert(res == resutl)
+        }
+        
+        do {
+            let s = "-91283472332"
+            let resutl = -2147483648
+            let res = solution.myAtoi(s)
+            XCTAssert(res == resutl)
+        }
+        
+        do {
+            let s = "20000000000000000000"
+            let resutl = 2147483647
+            let res = solution.myAtoi(s)
+            XCTAssert(res == resutl)
+        }
+    }
+    
     /// 7. 整数反转
     func testSolution_7() {
         let soution = Solution_7()
