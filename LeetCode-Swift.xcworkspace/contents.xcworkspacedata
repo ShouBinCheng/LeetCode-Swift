@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../CodeCopyLearn/SwiftNumber/SwiftNumber.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Objective-C-Test/Objective-C-Test.xcodeproj">
    </FileRef>
    <FileRef
