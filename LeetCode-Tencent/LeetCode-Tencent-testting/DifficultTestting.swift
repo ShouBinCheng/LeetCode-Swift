@@ -9,6 +9,19 @@ import XCTest
 
 final class DifficultTestting: XCTestCase {
 
+    /// 4. 寻找两个正序数组的中位数
+    func testSolution_4() {
+        let solution = Solution_4()
+        
+        do {
+            let nums1 = [1,3], nums2 = [2]
+            let result = 2.0
+            let ans = solution.findMedianSortedArrays(nums1, nums2)
+            XCTAssert(result == ans)
+        }
+
+    }
+    
     /// 23. 合并K个升序链表
     func testSolution_23() {
         let solution = Solution_23()
