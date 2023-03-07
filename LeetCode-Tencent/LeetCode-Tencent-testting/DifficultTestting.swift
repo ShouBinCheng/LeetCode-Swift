@@ -9,6 +9,27 @@ import XCTest
 
 final class DifficultTestting: XCTestCase {
 
+    /// 124. 二叉树中的最大路径和
+    func testSolution_124() {
+        let solution = Solution_124()
+        
+        do {
+            let root = [1,2,3]
+            let result = 6
+            let rootNode = solution.createTreeWith(array: root)
+            let answer = solution.maxPathSum(rootNode)
+            XCTAssert(answer == result)
+        }
+        
+        do {
+            let root = [-10,9,20,nil,nil,15,7]
+            let result = 42
+            let rootNode = solution.createTreeWith(array: root)
+            let answer = solution.maxPathSum(rootNode)
+            XCTAssert(answer == result)
+        }
+    }
+    
     /// 4. 寻找两个正序数组的中位数
     func testSolution_4() {
         let solution = Solution_4()

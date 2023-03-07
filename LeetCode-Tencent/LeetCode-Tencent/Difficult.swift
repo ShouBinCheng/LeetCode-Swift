@@ -7,6 +7,100 @@
 
 import Foundation
 
+//MARK: - 124. 二叉树中的最大路径和
+/*
+ 路径 被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。同一个节点在一条路径序列中 至多出现一次 。该路径 至少包含一个 节点，且不一定经过根节点。
+
+ 路径和 是路径中各节点值的总和。
+
+ 给你一个二叉树的根节点 root ，返回其 最大路径和 。
+
+ 示例 1：
+
+ 输入：root = [1,2,3]
+ 输出：6
+ 解释：最优路径是 2 -> 1 -> 3 ，路径和为 2 + 1 + 3 = 6
+ 示例 2：
+
+
+ 输入：root = [-10,9,20,null,null,15,7]
+ 输出：42
+ 解释：最优路径是 15 -> 20 -> 7 ，路径和为 15 + 20 + 7 = 42
+
+ 来源：力扣（LeetCode）
+ 链接：https://leetcode.cn/problems/binary-tree-maximum-path-sum
+ 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+class Solution_124 {
+
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init() { self.val = 0; self.left = nil; self.right = nil; }
+        public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+        public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+            self.val = val
+            self.left = left
+            self.right = right
+        }
+    }
+    
+    /// 解题思路，深度优先搜索（递归法）
+    /// 递归可计算出每个节点的最大路径和 = cur.val + left.val + right.val
+    /// 记录下最大的路径值
+    /// - 时间复杂度 O(n)
+    /// - 空间复杂度 O(len)，len为数的深度，简化 O(n)
+    func maxPathSum(_ root: TreeNode?) -> Int {
+        var result = Int.min
+        dfs(root, result: &result)
+        return result
+    }
+    
+    @discardableResult
+    func dfs(_ root: TreeNode?, result: inout Int) -> Int {
+        guard let root = root else {
+            return 0
+        }
+        let leftSum = dfs(root.left, result: &result)
+        let rightSum = dfs(root.right, result: &result)
+        let curentNodeSum = leftSum + root.val + rightSum
+        result = max(result, curentNodeSum)
+        return curentNodeSum
+    }
+    
+    /// 数组转树
+    /// 特点是，左节点永远指向 2*i + 1， 有节点指向 2*i+2
+    /// 遍历完数组就可以生成树
+    func createTreeWith(array: [Int?]) -> TreeNode? {
+        if array.first == nil {
+            return nil
+        }
+        let nodes = array.map { n in
+            if let num = n {
+                return Optional(TreeNode(num))
+            } else {
+                return nil
+            }
+        }
+        
+        for i in 0..<nodes.count {
+            if let node = nodes[i] {
+                let leftIndex = 2*i + 1
+                let rightIndex = 2*i + 2
+                if leftIndex < nodes.count {
+                    node.left = nodes[leftIndex]
+                }
+                if rightIndex < nodes.count {
+                    node.right = nodes[rightIndex]
+                }
+            }
+        }
+        return nodes[0]
+    }
+}
+
+
 //MARK: - *** 4. 寻找两个正序数组的中位数
 /*
  给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。
@@ -39,6 +133,35 @@ import Foundation
  */
 class Solution_4 {
     
+    /// 最优解：待研究
+    //TODO: 待研究
+    func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+        var i = 0
+        var j = 0
+        let totalCount = (nums1.count + nums2.count)/2
+        var midLeft = 0   // 中位数左边
+        var midRight = 0  // 中位数右边
+        
+        while i+j <= totalCount {
+            midLeft = midRight;
+            
+            // 谁小谁先向右移动
+            if (j >= nums2.count) || (i < nums1.count && nums1[i] <= nums2[j]) {
+                midRight = nums1[i]
+                i+=1
+            } else  {
+                midRight = nums2[j]
+                j+=1
+            }
+        }
+        
+        if (nums1.count + nums2.count) % 2 == 0 {
+            return Double(midLeft + midRight) / 2.0
+        } else {
+            return Double(midRight);
+        }
+    }
+    
     /// 解题思路
     /// 首先是两个有序数组，找出中文数，中位数如果 （m+n）是奇数的话，就是两数组合并后的中间那个数，偶数的话则是中间两个数和的一半
     /// 题目要求时间复杂度在 O(log (m+n) 之内，因此不能先合并两个数组在进行中位数查找。
@@ -54,7 +177,7 @@ class Solution_4 {
     /// k 的二分查找第一是先排除 k/2 个数的情况
     /// - 时间复杂度为 O(log (n+m))
     /// - 由于是尾随递归，空间复杂度为 O(1)
-    func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+    func findMedianSortedArrays11(_ nums1: [Int], _ nums2: [Int]) -> Double {
         let n = nums1.count
         let m = nums2.count
         let left = (n+m+1)/2
