@@ -1,0 +1,20 @@
+PODS:
+  - PonyDebugger (0.5):
+    - SocketRocket (= 0.5.1)
+  - SocketRocket (0.5.1)
+
+DEPENDENCIES:
+  - PonyDebugger
+
+SPEC REPOS:
+  https://cdn.cocoapods.org/:
+    - PonyDebugger
+    - SocketRocket
+
+SPEC CHECKSUMS:
+  PonyDebugger: 8452c283bf065012a4407b3392d1a27d2671ebb7
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+
+PODFILE CHECKSUM: 2b09066f7ca129462c20160e9e1b451006c2087b
+
+COCOAPODS: 1.11.3
